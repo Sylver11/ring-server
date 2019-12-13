@@ -21,7 +21,7 @@
   (index/home request))
 
 (defmethod route-handler ["/project/" :id] [{:keys [uri]}]
-  (let [id (re-find #"\d+$" uri)]
+  (let [id (Long. (re-find #"\d+$" uri))]
     (projects/projects-id id)))
 
 (defmethod route-handler "/projects" [request]
