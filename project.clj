@@ -5,6 +5,5 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [ring/ring-core "1.6.3"]
-                 [ring/ring-jetty-adapter "1.6.3"]
-                 [hiccup "1.0.5"]]
+                 [ring/ring-jetty-adapter "1.6.3"]]
   :repl-options {:init-ns ring-server.core})
