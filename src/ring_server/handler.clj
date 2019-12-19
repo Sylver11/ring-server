@@ -2,28 +2,18 @@
   (:require
    [ring-server.views.projects :as projects]
    [ring-server.views.index :as index]
-   [ring-server.views.error :as error]
-   [clojure.string :as string]
-            ))
+   [ring-server.views.error :as error]))
 
 
-(defn route-handler-dispatch [{:keys [uri]}]
-  (if (re-find #"\d+$" uri)
-    [(string/replace uri #"\d+$" "") :id]
-    uri))
 
-(defmulti route-handler route-handler-dispatch)
+(defn handler [request]
+  (cond (= (:uri request) "/home")
+        (index/home request)
 
-(defmethod route-handler :default [request]
-  (error/site-not-found request))
+        (= (:uri request) "/projects")
+        (projects/list-projects request)
 
-(defmethod route-handler "/" [request]
-  (index/home request))
+        :else
+        (error/site-not-found request)))
 
-(defmethod route-handler ["/project/" :id] [{:keys [uri]}]
-  (let [id (Long. (re-find #"\d+$" uri))]
-    (projects/projects-id id)))
-
-(defmethod route-handler "/projects" [request]
-  (projects/list-projects request))
 

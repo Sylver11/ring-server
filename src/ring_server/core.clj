@@ -6,7 +6,7 @@
 
 (defn middleware [request]
   {:status 200
-   :body (handler/route-handler request)})
+   :body (handler/handler request)})
 
 (defonce *server (atom nil))
 
