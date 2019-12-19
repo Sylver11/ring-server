@@ -4,9 +4,9 @@
    [hiccup.page :as page]))
 
 
-
 (defn home [request]
   (page/html5
-   [:div "Welcome to the home page"])
-  )
+   [:div
+    [:h1 "Welcome to my personal Website"]
+    [:p  "This is the Ring server doing its magic"]]))
 
